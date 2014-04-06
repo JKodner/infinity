@@ -39,13 +39,29 @@ def inf(mode="+", start=0, step=1, typ=False):
 	else:
 		raise ValueError("Input must be '+' or '-'")
 
-def fibonacci(mode="+", start=1):
+def fibonacci(mode="+", start=1, typ=False):
 	"""Returns a Generator with incrementing fibonacci values.
 
 	There are three parameters that one can input:
 	The 'mode' parameter: Input '+'/'-' for whether you want positive or negative values.
 	The 'start' parameter: Input an integer which is the starting point of the values.
 	"""
+	from types import (FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
+	MethodType)
+	types = (type, FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
+	MethodType)
+	if not isinstance(typ, types):
+		raise ValueError("'typ' parameter must be function.")
+	if isinstance(typ, type):
+		if typ not in [int, float, str, long, complex, oct, hex, bin]:
+			raise ValueError("'typ' parameter is not valid numeric type.")
+	if typ == False:
+		def reg(num):
+			return num
+		typ = reg
+	if isinstance(typ, FunctionType):
+		if typ.func_code.co_argcount != 1:
+			raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)):
 			if mode == "+":
@@ -59,7 +75,7 @@ def fibonacci(mode="+", start=1):
 				next = current + previous
 				lst.append(next)
 				count += 1
-				yield next
+				yield typ(next)
 		else:
 			raise ValueError("'start' value must be an integer.")
 	else:
