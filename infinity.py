@@ -16,6 +16,9 @@ def inf(mode="+", start=0, step=1, typ=False):
 	MethodType)
 	if not isinstance(typ, types):
 		raise ValueError("'typ' parameter must be function.")
+	if isinstance(typ, type):
+		if typ not in [int, float, str, long, complex, oct, hex, bin]:
+			raise ValueError("'typ' parameter is not valid numeric type.")
 	if typ == False:
 		def reg(num):
 			return num
