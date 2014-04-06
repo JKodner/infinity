@@ -23,7 +23,7 @@ def inf(mode="+", start=0, step=1, typ=False):
 		def reg(num):
 			return num
 		typ = reg
-	if isinstance(typ, FunctionType):
+	if isinstance(typ, types[1:]):
 		if typ.func_code.co_argcount != 1:
 			raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
@@ -59,7 +59,7 @@ def fibonacci(mode="+", start=1, typ=False):
 		def reg(num):
 			return num
 		typ = reg
-	if isinstance(typ, FunctionType):
+	if isinstance(typ, types[1:]):
 		if typ.func_code.co_argcount != 1:
 			raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
