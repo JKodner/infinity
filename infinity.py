@@ -24,7 +24,7 @@ def inf(mode="+", start=0, step=1, typ=False):
 		if isinstance(typ, type):
 			if typ not in [int, float, str, long, complex, oct, hex, bin]:
 				raise ValueError("'typ' parameter is not valid numeric type.")
-		if isinstance(typ, types[1:]):
+		elif isinstance(typ, types[1:]):
 			if typ.func_code.co_argcount != 1:
 				raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
@@ -61,7 +61,7 @@ def fibonacci(mode="+", start=1, typ=False):
 		if isinstance(typ, type):
 			if typ not in [int, float, str, long, complex, oct, hex, bin]:
 				raise ValueError("'typ' parameter is not valid numeric type.")
-		if isinstance(typ, types[1:]):
+		elif isinstance(typ, types[1:]):
 			if typ.func_code.co_argcount != 1:
 				raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
