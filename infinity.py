@@ -14,18 +14,19 @@ def inf(mode="+", start=0, step=1, typ=False):
 	MethodType)
 	types = (type, FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
 	MethodType)
-	if not isinstance(typ, types):
+	if not isinstance(typ, types) and typ != False:
 		raise ValueError("'typ' parameter must be function.")
-	if isinstance(typ, type):
-		if typ not in [int, float, str, long, complex, oct, hex, bin]:
-			raise ValueError("'typ' parameter is not valid numeric type.")
 	if typ == False:
 		def reg(num):
 			return num
 		typ = reg
-	if isinstance(typ, types[1:]):
-		if typ.func_code.co_argcount != 1:
-			raise ValueError("'typ' function must only have 1 parameter")
+	else:
+		if isinstance(typ, type):
+			if typ not in [int, float, str, long, complex, oct, hex, bin]:
+				raise ValueError("'typ' parameter is not valid numeric type.")
+		if isinstance(typ, types[1:]):
+			if typ.func_code.co_argcount != 1:
+				raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)) and isinstance(step, (int, float)):
 			while True:
@@ -50,18 +51,19 @@ def fibonacci(mode="+", start=1, typ=False):
 	MethodType)
 	types = (type, FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
 	MethodType)
-	if not isinstance(typ, types):
+	if not isinstance(typ, types) and typ != False:
 		raise ValueError("'typ' parameter must be function.")
-	if isinstance(typ, type):
-		if typ not in [int, float, str, long, complex, oct, hex, bin]:
-			raise ValueError("'typ' parameter is not valid numeric type.")
 	if typ == False:
 		def reg(num):
 			return num
 		typ = reg
-	if isinstance(typ, types[1:]):
-		if typ.func_code.co_argcount != 1:
-			raise ValueError("'typ' function must only have 1 parameter")
+	else:
+		if isinstance(typ, type):
+			if typ not in [int, float, str, long, complex, oct, hex, bin]:
+				raise ValueError("'typ' parameter is not valid numeric type.")
+		if isinstance(typ, types[1:]):
+			if typ.func_code.co_argcount != 1:
+				raise ValueError("'typ' function must only have 1 parameter")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)):
 			if mode == "+":
