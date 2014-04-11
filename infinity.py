@@ -9,7 +9,8 @@ def inf(mode="+", start=0, step=1, typ=False):
 	The third is the incremtor (step) for the generator.
 	
 	The fourth is a function that changes a number (e.g., float, int) Make sure that
-	the function does not accept two parameters, or else an error will be outputted."""
+	the function does not accept two parameters, and can work on any number, or 
+	else an error will be outputted."""
 	from types import (FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
 	MethodType)
 	types = (type, FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
@@ -21,12 +22,10 @@ def inf(mode="+", start=0, step=1, typ=False):
 			return num
 		typ = reg
 	else:
-		if isinstance(typ, type):
-			if typ not in [int, float, str, long, complex, oct, hex, bin]:
-				raise ValueError("'typ' parameter is not valid numeric type.")
-		elif isinstance(typ, types[1:]):
-			if typ.func_code.co_argcount != 1:
-				raise ValueError("'typ' function must only have 1 parameter")
+		try:
+			typ(1)
+		else:
+			raise ValueError("Inputted function does not work.")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)) and isinstance(step, (int, float)):
 			while True:
@@ -46,6 +45,11 @@ def fibonacci(mode="+", start=1, typ=False):
 	There are three parameters that one can input:
 	The 'mode' parameter: Input '+'/'-' for whether you want positive or negative values.
 	The 'start' parameter: Input an integer which is the starting point of the values.
+
+	The 'typ' parameter is an inputted function that changes a number (e.g., float, int) 
+	Make sure that the function does not accept two parameters, and can work on any number, or 
+	else an error will be outputted.
+
 	"""
 	from types import (FunctionType, BuiltinFunctionType, BuiltinMethodType, LambdaType,
 	MethodType)
@@ -58,12 +62,10 @@ def fibonacci(mode="+", start=1, typ=False):
 			return num
 		typ = reg
 	else:
-		if isinstance(typ, type):
-			if typ not in [int, float, str, long, complex, oct, hex, bin]:
-				raise ValueError("'typ' parameter is not valid numeric type.")
-		elif isinstance(typ, types[1:]):
-			if typ.func_code.co_argcount != 1:
-				raise ValueError("'typ' function must only have 1 parameter")
+		try:
+			typ(1)
+		else:
+			raise ValueError("Inputted function does not work.")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)):
 			if mode == "+":
