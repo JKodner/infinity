@@ -24,7 +24,7 @@ def inf(mode="+", start=0, step=1, typ=False):
 	else:
 		try:
 			typ(1)
-		else:
+		except:
 			raise ValueError("Inputted function does not work.")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)) and isinstance(step, (int, float)):
@@ -64,7 +64,7 @@ def fibonacci(mode="+", start=1, typ=False):
 	else:
 		try:
 			typ(1)
-		else:
+		except:
 			raise ValueError("Inputted function does not work.")
 	if mode in ["+", "-"]:
 		if isinstance(start, (int, float)):
